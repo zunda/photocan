@@ -14,7 +14,7 @@ if os.environ.has_key('HOME'):
 
 for sfile in glob.iglob(mount_point + "/DCIM/*/*.[Jj][Pp][Gg]"):
 	basename = os.path.basename(sfile)
-	date = time.strftime("%Y-%m-%d", time.gmtime(os.stat(sfile).st_mtime))
+	date = time.strftime("%Y-%m-%d", time.gmtime(os.path.getmtime(sfile)))
 	datedir = ddir + '/' + date
 	if not os.path.isdir(datedir):
 		os.mkdir(datedir)
