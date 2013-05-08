@@ -9,8 +9,8 @@ if os.environ.has_key('UM_MOUNTPOINT'):
 	mount_point = os.environ["UM_MOUNTPOINT"].strip("\n")
 
 ddir='/home/pi/Pictures'
-if os.environ.has_key('HOME'):
-	ddir = os.environ["HOME"].strip("\n") + '/Pictures'
+#if os.environ.has_key('HOME'):
+#	ddir = os.environ["HOME"].strip("\n") + '/Pictures'
 
 for sfile in glob.iglob(mount_point + "/DCIM/*/*.[Jj][Pp][Gg]"):
 	basename = os.path.basename(sfile)
