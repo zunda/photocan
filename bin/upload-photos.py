@@ -24,7 +24,6 @@ sdirs=glob.glob(pdir + '*/')
 if len(sdirs) < 1:
 	exit()
 sdirs.sort()
-print sdirs
 sdir = sdirs[-1]
 print "Scanning " + sdir
 
@@ -49,8 +48,6 @@ for sfile in glob.iglob(sdir + "/*.[Jj][Pp][Gg]"):
 		print "Skipping " + dfile
 		continue
 
-	origstat = os.stat(sfile)
-	cmd = "convert -resize %sx%s %s %s" % (size, size, sfile, dfile)
-	print cmd
-	os.system(cmd)
-	os.utime(dfile, (origstat.st_atime, origstat.st_mtime))
+	print "Copying " + sfile + " to " + dfile
+	shutil.copy2(sfile, dfile)
+
