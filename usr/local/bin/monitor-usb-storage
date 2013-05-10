@@ -1,0 +1,11 @@
+#!/bin/sh
+# Run sfdisk to activate USB storage from Nexus One
+
+while [ 1 ]; do
+	for dev in /dev/sda /dev/sdb /dev/sdc /dev/sdd; do
+		if [ -b $dev ] && { ! mount | grep -q $dev ; }; then
+			sfdisk --list $dev > /dev/null	2>&1
+		fi
+	done
+	sleep 15
+done
