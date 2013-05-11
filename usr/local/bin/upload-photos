@@ -3,29 +3,25 @@ import os
 import glob
 import time
 import shutil
+import sys
+import syslog
 
-size=1024
+mount_point = sys.argv[1]
 
-mount_point = '/media/usb0/'
-if os.environ.has_key('UM_MOUNTPOINT'):
-	mount_point = os.environ["UM_MOUNTPOINT"].strip("\n")
-
-ddirs = glob.glob(mount_point + '[Dd]own[Ll]oad/')
+ddirs = glob.glob(mount_point + '/[Dd]own[Ll]oad/')
 if len(ddirs) < 1:
 	exit()
 ddirs.sort()
 ddir = ddirs[0]
 
 pdir='/home/pi/Pictures/'
-#if os.environ.has_key('HOME'):
-#	pdir = os.environ["HOME"].strip("\n") + '/Pictures/'
 
 sdirs=glob.glob(pdir + '*/')
 if len(sdirs) < 1:
 	exit()
 sdirs.sort()
 sdir = sdirs[-1]
-print "Scanning " + sdir
+syslog.syslog("Scanning " + sdir + " for photos to upload")
 
 date = os.path.basename(os.path.dirname(sdir))
 for sfile in glob.iglob(sdir + "/*.[Jj][Pp][Gg]"):
@@ -34,7 +30,7 @@ for sfile in glob.iglob(sdir + "/*.[Jj][Pp][Gg]"):
 	# Skip photos that have original in mounted device
 	origfile = glob.glob(mount_point + "DCIM/*/" + basename)
 	if len(origfile) > 0:
-		print "Skipping " + origfile[0]
+		syslog.syslog("Skipping " + origfile[0])
 		continue
 
 	# Destination directory
@@ -45,9 +41,8 @@ for sfile in glob.iglob(sdir + "/*.[Jj][Pp][Gg]"):
 	# Destination file
 	dfile = dstdir + basename
 	if os.path.isfile(dfile):
-		print "Skipping " + dfile
+		syslog.syslog("Skipping " + dfile)
 		continue
 
-	print "Copying " + sfile + " to " + dfile
+	syslog.syslog("Copying " + sfile + " to " + dfile)
 	shutil.copy2(sfile, dfile)
-

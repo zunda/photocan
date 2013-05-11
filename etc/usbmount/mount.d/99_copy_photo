@@ -4,13 +4,14 @@ mkdir -p /tmp/photocan/backup
 mkdir -p /tmp/photocan/upload
 
 name=`basename $UM_MOUNTPOINT`
-touch /tmp/photocan/backup/$name
+echo $UM_MOUNTPOINT > /tmp/photocan/backup/$name
 logger Checking $name for photos to be backued up
 /usr/local/bin/backup-photos $UM_MOUNTPOINT
 RETVAL="$?"
 if [ "$RETVAL" = 1 ]; then
 	# Need to upload photos later
 	mv /tmp/photocan/backup/$name /tmp/photocan/upload/$name
+	sh /etc/usbmount/umount.d/99_copy_photo
 else
 	rm /tmp/photocan/backup/$name
 	umount $UM_MOUNTPOINT

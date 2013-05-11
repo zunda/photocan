@@ -20,8 +20,9 @@ for sfile in glob.iglob(mount_point + "/DCIM/*/*.[Jj][Pp][Gg]"):
 		syslog.syslog("Copying " + sfile + " to " + dfile)
 		shutil.copy2(sfile, dfile)
 
-ddirs=glob.glob(mount_point + '[Dd]own[Ll]oad/')
+ddirs=glob.glob(mount_point + '/[Dd]own[Ll]oad/')
 if len(ddirs) < 1:
 	exit(0)	# Nothing to upload
 else:
+	syslog.syslog("Device at " + mount_point + " has a place for upload")
 	exit(1)	# Need to upload photos later
