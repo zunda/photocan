@@ -3,13 +3,13 @@
 # Provides:          monitor-usb-storage
 # Required-Start:    udev
 # Required-Stop:
-# Default-Start:     S
-# Default-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
 # Short-Description: Monitor USB storage
 # Description:       Monitor USB storage to activate Nexus One
 ### END INIT INFO
 
-# Author: zunda <zunda@freeshell.org>
+# Author: zunda <zunda at freeshell.org>
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
@@ -22,9 +22,6 @@ SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
-
-# Read configuration variable file if it is present
-[ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
