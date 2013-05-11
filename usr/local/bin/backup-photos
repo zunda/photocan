@@ -3,14 +3,11 @@ import os
 import glob
 import time
 import shutil
+import sys
+import syslog
 
-mount_point = '/media/usb0'
-if os.environ.has_key('UM_MOUNTPOINT'):
-	mount_point = os.environ["UM_MOUNTPOINT"].strip("\n")
-
+mount_point = sys.argv[1]
 ddir='/home/pi/Pictures'
-#if os.environ.has_key('HOME'):
-#	ddir = os.environ["HOME"].strip("\n") + '/Pictures'
 
 for sfile in glob.iglob(mount_point + "/DCIM/*/*.[Jj][Pp][Gg]"):
 	basename = os.path.basename(sfile)
@@ -20,5 +17,11 @@ for sfile in glob.iglob(mount_point + "/DCIM/*/*.[Jj][Pp][Gg]"):
 		os.mkdir(datedir)
 	dfile = datedir + '/' + basename
 	if not os.path.isfile(dfile):
-		print "Copying " + sfile + " to " + dfile
+		syslog.syslog("Copying " + sfile + " to " + dfile)
 		shutil.copy2(sfile, dfile)
+
+ddirs=glob.glob(mount_point + '[Dd]own[Ll]oad/')
+if len(ddirs) < 1:
+	exit(0)	# Nothing to upload
+else:
+	exit(1)	# Need to upload photos later
