@@ -6,7 +6,7 @@ rm -f /tmp/photocan/poweroff
 
 name=`basename $UM_MOUNTPOINT`
 echo $UM_MOUNTPOINT > /tmp/photocan/backup/$name
-logger Checking $name for photos to be backued up
+logger Checking $name for photos to be backed up
 /usr/local/bin/backup-photos $UM_MOUNTPOINT
 RETVAL="$?"
 if [ "$RETVAL" = 1 ]; then
