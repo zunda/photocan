@@ -1,5 +1,7 @@
 #!/bin/sh
 
+logger $UM_MOUNTPOINT has been mounted
+
 mkdir -p /tmp/photocan/backup
 mkdir -p /tmp/photocan/upload
 rm -f /tmp/photocan/poweroff

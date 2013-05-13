@@ -1,5 +1,7 @@
 #!/bin/sh
 
+logger $UM_MOUNTPOINT has been unmounted
+
 mkdir -p /tmp/photocan/backup
 mkdir -p /tmp/photocan/upload
 mkdir -p /tmp/photocan/uploading
