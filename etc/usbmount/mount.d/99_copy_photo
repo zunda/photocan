@@ -2,6 +2,7 @@
 
 mkdir -p /tmp/photocan/backup
 mkdir -p /tmp/photocan/upload
+rm -f /tmp/photocan/poweroff
 
 name=`basename $UM_MOUNTPOINT`
 echo $UM_MOUNTPOINT > /tmp/photocan/backup/$name

@@ -25,5 +25,11 @@ fi
 if [ -z "$(ls -A /tmp/photocan/backup/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/upload/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/uploading/)"]; then
-	logger Can power off
+	logger Power off in 15 seconds
+	touch /tmp/photocan/poweroff
+	sleep 15
+	if [ -e /tmp/photocan/poweroff ]; then
+		logger Turnning power off
+		sync; sync; sync; poweroff
+	fi
 fi
