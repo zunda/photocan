@@ -1,6 +1,6 @@
 #!/bin/sh
 
-logger $UM_MOUNTPOINT has been unmounted
+logger -t photocan $UM_MOUNTPOINT has been unmounted
 
 mkdir -p /tmp/photocan/backup
 mkdir -p /tmp/photocan/upload
@@ -15,7 +15,7 @@ if [ -z "$(ls -A /tmp/photocan/backup/)"]; then
 			lockpath=/tmp/photocan/uploading/$name
 			if { mv $path $lockpath ; }; then
 			# Avoid race condition
-				logger Uploading photos to $mountpoint
+				logger -t photocan Uploading photos to $mountpoint
 				/usr/local/bin/upload-photos $mountpoint
 				umount $mountpoint
 				rm $lockpath
@@ -27,10 +27,10 @@ fi
 if [ -z "$(ls -A /tmp/photocan/backup/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/upload/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/uploading/)"]; then
-	logger Power off in 15 seconds
-	touch /tmp/photocan/poweroff
+	logger Power off in 15 seconds. Remove /tmp/photocan/poweroff.$$ to avoid power off
+	touch /tmp/photocan/poweroff.$$
 	sleep 15
-	if [ -e /tmp/photocan/poweroff ]; then
+	if [ -e /tmp/photocan/poweroff.$$ ]; then
 		logger Turnning power off
 		sync; sync; sync; poweroff
 	fi

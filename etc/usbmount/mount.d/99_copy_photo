@@ -1,14 +1,14 @@
 #!/bin/sh
 
-logger $UM_MOUNTPOINT has been mounted
+logger -t photocan $UM_MOUNTPOINT has been mounted
 
 mkdir -p /tmp/photocan/backup
 mkdir -p /tmp/photocan/upload
-rm -f /tmp/photocan/poweroff
+rm -f /tmp/photocan/poweroff.*
 
 name=`basename $UM_MOUNTPOINT`
 echo $UM_MOUNTPOINT > /tmp/photocan/backup/$name
-logger Checking $name for photos to be backed up
+logger -t photocan Checking $name for photos to be backed up
 /usr/local/bin/backup-photos $UM_MOUNTPOINT
 RETVAL="$?"
 if [ "$RETVAL" = 1 ]; then
