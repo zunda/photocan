@@ -27,11 +27,15 @@ fi
 if [ -z "$(ls -A /tmp/photocan/backup/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/upload/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/uploading/)"]; then
-	logger Power off in 15 seconds. Remove /tmp/photocan/poweroff.$$ to avoid power off
-	touch /tmp/photocan/poweroff.$$
+	switch=/tmp/photocan/poweroff.$$
+	touch $switch
+	logger "Power off in 15 seconds. rm -f $switch to avoid power off"
 	sleep 15
-	if [ -e /tmp/photocan/poweroff.$$ ]; then
+	sync; sync
+	if [ -e $switch ]; then
 		logger Turnning power off
 		sync; sync; sync; poweroff
+	else
+		logger Stopped turnning power off
 	fi
 fi
