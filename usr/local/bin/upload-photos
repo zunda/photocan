@@ -28,7 +28,7 @@ for sfile in glob.iglob(sdir + "/*.[Jj][Pp][Gg]"):
 	basename = os.path.basename(sfile)
 
 	# Skip photos that have original in mounted device
-	origfile = glob.glob(mount_point + "DCIM/*/" + basename)
+	origfile = glob.glob(mount_point + "/DCIM/*/" + basename)
 	if len(origfile) > 0:
 		syslog.syslog("Skipping " + origfile[0])
 		continue
