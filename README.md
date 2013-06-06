@@ -30,7 +30,7 @@ Follow steps below will
 * Copy photos in the camera and the phone into directories ~pi/Pictures/YYYY-MM-DD with YYYY-MM-DD the date of the pictures taken on
 * Copy phtoos taken on the latest date into /Download directory at the root directory of SD card in your phone
 
-# Turn on Raspberry Pi
-# Connect your camera through USB as a mass storage device
-# Connect your phone through USB as a mass storage device
-# Wait Raspberry Pi to power off
+1. Turn on Raspberry Pi
+2. Connect your camera through USB as a mass storage device
+3. Connect your phone through USB as a mass storage device
+4. Wait Raspberry Pi to power off
