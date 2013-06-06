@@ -1,7 +1,6 @@
 写真缶
 ======
-
-Use a Raspberry Pi to backup photographs and prepare them for upload
+Use a Raspberry Pi to backup photographs and prepare them for upload.
 
 Preparation of Raspberry Pi
 ---------------------------
@@ -46,3 +45,9 @@ Monitor system log to see what is happening
 $ tail -f /var/log/syslog
 ```
 You can avoid automatic shut down following the message added in system log.
+
+License
+-------
+Copyright (C) 2013 zunda <zunda at freeshell.org>
+
+Permission is granted for use, copying, modification, distribution, and distribution of modified versions of this work as long as the above copyright notice is included.
