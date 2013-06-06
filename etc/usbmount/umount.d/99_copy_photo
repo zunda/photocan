@@ -17,6 +17,7 @@ if [ -z "$(ls -A /tmp/photocan/backup/)"]; then
 			# Avoid race condition
 				logger -t photocan Uploading photos to $mountpoint
 				/usr/local/bin/upload-photos $mountpoint
+				logger -t photocan Finished uploading photos to $mountpoint
 				umount $mountpoint
 				rm $lockpath
 			fi

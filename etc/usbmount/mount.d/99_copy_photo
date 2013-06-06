@@ -11,6 +11,7 @@ echo $UM_MOUNTPOINT > /tmp/photocan/backup/$name
 logger -t photocan Checking $name for photos to be backed up
 /usr/local/bin/backup-photos $UM_MOUNTPOINT
 RETVAL="$?"
+logger -t photocan Finished backing up photos from $name
 if [ "$RETVAL" = 1 ]; then
 	# Need to upload photos later
 	mv /tmp/photocan/backup/$name /tmp/photocan/upload/$name
