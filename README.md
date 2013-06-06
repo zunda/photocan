@@ -39,6 +39,7 @@ Follow steps below will
 2. Connect your camera through USB as a mass storage device
 3. Connect your phone through USB as a mass storage device
 4. Wait Raspberry Pi to power off
+5. Disconnect your camera and phone
 
 Monitor system log to see what is happening
 ```
