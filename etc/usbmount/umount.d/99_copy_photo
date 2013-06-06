@@ -29,7 +29,7 @@ if [ -z "$(ls -A /tmp/photocan/backup/)"] && \
 	 [ -z "$(ls -A /tmp/photocan/uploading/)"]; then
 	switch=/tmp/photocan/poweroff.$$
 	touch $switch
-	logger "Power off in 15 seconds. rm -f $switch to avoid power off"
+	logger "Power off in 15 seconds. sudo rm -f $switch to avoid power off"
 	sleep 15
 	sync; sync
 	if [ -e $switch ]; then
