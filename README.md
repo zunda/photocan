@@ -48,6 +48,6 @@ You can avoid automatic shut down following the message added in system log.
 
 License
 -------
-Copyright (C) 2013 zunda <zunda at freeshell.org>
+Copyright (C) 2013 zunda &lt;zunda at freeshell.org&gt;
 
 Permission is granted for use, copying, modification, distribution, and distribution of modified versions of this work as long as the above copyright notice is included.
