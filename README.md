@@ -24,6 +24,11 @@ $ cd photocan
 $ sudo sh install.sh
 ```
 
+The installed files can be removed with
+```
+$ sudo sh uninstall.sh
+```
+
 Use
 ---
 Follow steps below will
@@ -34,3 +39,9 @@ Follow steps below will
 2. Connect your camera through USB as a mass storage device
 3. Connect your phone through USB as a mass storage device
 4. Wait Raspberry Pi to power off
+
+Monitor system log to see what is happening
+```
+$ tail -f /var/log/syslog
+```
+You can avoid automatic shut down following the message added in system log.
